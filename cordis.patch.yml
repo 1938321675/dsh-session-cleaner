@@ -1,0 +1,4 @@
+# Package bundle layer for dsh-session-cleaner.
+- insert:
+    - id: session-cleaner
+      name: dsh-session-cleaner

@@ -1,0 +1,41 @@
+{
+  "name": "dsh-session-cleaner",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "检查并清理 DSH 空白会话：扫描各工作区只含会话头与初始化事件的会话，移入隔离区，可恢复或彻底删除。",
+  "license": "MIT",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.mjs",
+    "lib/",
+    "client.js",
+    "cordis.patch.yml",
+    "README.md",
+    "test/"
+  ],
+  "scripts": {
+    "check": "node --check index.mjs && node --check client.js && node --check lib/sessions.mjs && node --check lib/quarantine.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ]
+    }
+  }
+}
